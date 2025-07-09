@@ -2,14 +2,6 @@
 
 This is a simple **Fake News Detection Web App** built using **Streamlit** and **Machine Learning**. It classifies news articles as **Fake** or **Real** based on the title and content using NLP techniques and a trained model.
 
----
-
-## 🚀 Demo
-
-![App Screenshot](https://github.com/your-username/fake-news-detector/assets/demo.gif)  
-*(Insert a GIF or image of your app here)*
-
----
 
 ## 📦 Features
 

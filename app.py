@@ -43,26 +43,32 @@ tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 model = pickle.load(open('model.pkl', 'rb'))
 
 # Streamlit UI
-st.title("Fake News Detector")
+st.title("📰 Fake News Detector")
 
+# Input fields
 news_title = st.text_input("Enter News Title")
 news_text = st.text_area("Enter News Content")
 
+# Predict button
 if st.button('Predict'):
-    # Combine title and content
-    full_text = news_title + " " + news_text
-
-    # Transform the text
-    transformed_input = transform_text(full_text)
-
-    # Vectorize
-    vector_input = tfidf.transform([transformed_input])
-
-    # Predict
-    result = model.predict(vector_input)[0]
-
-    # Display
-    if result == 1:
-        st.header("Real News")
+    # Input validation
+    if not news_title.strip() or not news_text.strip():
+        st.warning("⚠️ Please enter both the News Title and News Content.")
     else:
-        st.header("Fake News")
+        # Combine title and content
+        full_text = news_title + " " + news_text
+
+        # Transform the text
+        transformed_input = transform_text(full_text)
+
+        # Vectorize
+        vector_input = tfidf.transform([transformed_input])
+
+        # Predict
+        result = model.predict(vector_input)[0]
+
+        # Display result
+        if result == 1:
+            st.success("✅ This is **Real News**.")
+        else:
+            st.error("🛑 This is **Fake News**.")
